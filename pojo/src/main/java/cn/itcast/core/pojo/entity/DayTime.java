@@ -2,12 +2,17 @@ package cn.itcast.core.pojo.entity;
 
 import java.io.Serializable;
 
-public class DayTime implements Serializable{
+public class DayTime implements Serializable {
 
     //日期
     private String ytime;
     //销量
     private Integer item1;
+
+    public DayTime(String ytime, Integer item1) {
+        this.ytime = ytime;
+        this.item1 = item1;
+    }
 
     public String getYtime() {
         return ytime;
@@ -23,13 +28,5 @@ public class DayTime implements Serializable{
 
     public void setItem1(Integer item1) {
         this.item1 = item1;
-    }
-
-    public DayTime(String ytime, Integer item1) {
-        this.ytime = ytime;
-        this.item1 = item1;
-    }
-
-    public DayTime() {
     }
 }

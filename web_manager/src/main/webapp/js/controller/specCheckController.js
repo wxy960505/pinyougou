@@ -1,12 +1,12 @@
 // 定义控制器:
-app.controller("brandController",function($scope,$controller,$http,brandService){
+app.controller("specCheckController",function($scope,$controller,$http, specCheckService){
 	// AngularJS中的继承:伪继承
 	$controller('baseController',{$scope:$scope});
 	
 	// 查询所有的品牌列表的方法:
 	$scope.findAll = function(){
 		// 向后台发送请求:
-		brandService.findAll().success(function(response){
+        specCheckService.findAll().success(function(response){
 			$scope.list = response;
 		});
 	}
@@ -14,7 +14,7 @@ app.controller("brandController",function($scope,$controller,$http,brandService)
 	// 分页查询
 	$scope.findByPage = function(page,rows){
 		// 向后台发送请求获取数据:
-		brandService.findByPage(page,rows).success(function(response){
+        specCheckService.findByPage(page,rows).success(function(response){
 			$scope.paginationConf.totalItems = response.total;
 			$scope.list = response.rows;
 		});
@@ -26,10 +26,10 @@ app.controller("brandController",function($scope,$controller,$http,brandService)
 		var object;
 		if($scope.entity.id != null){
 			// 更新
-			object = brandService.update($scope.entity);
+			object = specCheckService.update($scope.entity);
 		}else{
 			// 保存
-			object = brandService.save($scope.entity);
+			object = specCheckService.save($scope.entity);
 		}
 		object.success(function(response){
 			// {success:true,message:xxx}
@@ -47,7 +47,7 @@ app.controller("brandController",function($scope,$controller,$http,brandService)
 	
 	// 查询一个:
 	$scope.findById = function(id){
-		brandService.findById(id).success(function(response){
+        specCheckService.findById(id).success(function(response){
 			// {id:xx,name:yy,firstChar:zz}
 			$scope.entity = response;
 		});
@@ -55,7 +55,7 @@ app.controller("brandController",function($scope,$controller,$http,brandService)
 	
 	// 删除品牌:
 	$scope.dele = function(){
-		brandService.dele($scope.selectIds).success(function(response){
+        specCheckService.dele($scope.selectIds).success(function(response){
 			// 判断保存是否成功:
 			if(response.success==true){
 				// 保存成功
@@ -74,12 +74,24 @@ app.controller("brandController",function($scope,$controller,$http,brandService)
 	// 假设定义一个查询的实体：searchEntity
 	$scope.search = function(page,rows){
 		// 向后台发送请求获取数据:
-		brandService.search(page,rows,$scope.searchEntity).success(function(response){
+        specCheckService.search(page,rows,$scope.searchEntity).success(function(response){
 			$scope.paginationConf.totalItems = response.total;
 			$scope.list = response.rows;
 		});
 	}
 
 
+
+    // 审核的方法:
+    $scope.updateStatus = function(status){
+        specCheckService.updateStatus($scope.selectIds,status).success(function(response){
+            if(response.success){
+                $scope.reloadList();//刷新列表
+                $scope.selectIds = [];
+            }else{
+                alert(response.message);
+            }
+        });
+    }
 	
 });

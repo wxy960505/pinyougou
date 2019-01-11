@@ -25,4 +25,11 @@ public class SellerController {
             return new Result(false, "注册失败!");
         }
     }
+
+    @RequestMapping("/findOne")
+    public Seller findOne(String id) {
+        Seller one = sellerService.findOne(id);
+        return one;
+    }
+
 }
