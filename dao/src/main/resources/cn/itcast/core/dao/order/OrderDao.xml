@@ -530,4 +530,9 @@
       seller_id = #{sellerId,jdbcType=VARCHAR}
     where order_id = #{orderId,jdbcType=BIGINT}
   </update>
+
+
+  <select id="findCountDayTime" parameterType="cn.itcast.core.pojo.order.Order" resultType="java.lang.Integer" >
+    select COUNT(*) from tb_order where create_time like #{timeday}
+  </select>
 </mapper>

@@ -8,6 +8,7 @@ import cn.itcast.core.pojo.specification.Specification;
 import cn.itcast.core.pojo.specification.SpecificationOption;
 import cn.itcast.core.pojo.specification.SpecificationOptionQuery;
 import cn.itcast.core.pojo.specification.SpecificationQuery;
+import cn.itcast.core.util.Constants;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -38,6 +39,7 @@ public class SpecServiceImpl implements SpecService {
                 criteria.andSpecNameLike("%"+spec.getSpecName()+"%");
             }
         }
+        criteria.andSpecNameNotLike("%" + Constants.CART_SHENHE + "%");
         Page<Specification> specList = (Page<Specification>)specDao.selectByExample(query);
         return new PageResult(specList.getTotal(), specList.getResult());
     }
