@@ -1,8 +1,12 @@
 package cn.itcast.core.pojo.order;
 
+import cn.itcast.core.util.DateUtils;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class Order implements Serializable {
     /**
@@ -124,6 +128,21 @@ public class Order implements Serializable {
      * 订单来源：1:app端，2：pc端，3：M端，4：微信端，5：手机qq端
      */
     private String sourceType;
+    /*
+    * 查询订单条件
+    * */
+    private String sear;
+
+    public String getSear() {
+        return sear;
+    }
+
+    public void setSear(String sear) {
+        this.sear = sear;
+    }
+
+    //订单详情对象
+    private List<OrderItem> orderItemList;
 
     /**
      * 商家ID
@@ -438,4 +457,18 @@ public class Order implements Serializable {
         result = prime * result + ((getSellerId() == null) ? 0 : getSellerId().hashCode());
         return result;
     }
+
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
+
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(DateUtils.stringToDate(DateUtils.getDayStartAndEndTimePointStr(new Date())[0]));
+        System.out.println(DateUtils.stringToDate(DateUtils.getDayStartAndEndTimePointStr(new Date())[1]));
+    }
 }
+
