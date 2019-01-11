@@ -4,8 +4,7 @@ import cn.itcast.core.dao.good.BrandDao;
 import cn.itcast.core.pojo.entity.PageResult;
 import cn.itcast.core.pojo.good.Brand;
 import cn.itcast.core.pojo.good.BrandQuery;
-import cn.itcast.core.pojo.good.Goods;
-import cn.itcast.core.pojo.good.GoodsQuery;
+
 import cn.itcast.core.util.Constants;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
