@@ -13,4 +13,8 @@ public interface Constants {
 
     public final static String CART_LIST_COOKIE = "pyg_cartList";
     public final static String CART_LIST_REDIS = "pyg_cartList";
+    public final static String BRAND_APPLY = "-noBrand";
+    public final static String CART_SHENHE = "-WEISHENHE";
+    public final static String template_APPLY = "-noTemplate";
+
 }
