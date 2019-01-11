@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface OrderDao {
+
     int countByExample(OrderQuery example);
 
     int deleteByExample(OrderQuery example);
@@ -27,4 +28,8 @@ public interface OrderDao {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    int findCountDayTime(String data);
+
+
 }
