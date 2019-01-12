@@ -16,4 +16,8 @@ public interface Constants {
 
     public final static String USER_STATUS = "1";
     public final static String USER_STATUS2 = "0";
+    public final static String BRAND_APPLY = "-noBrand";
+    public final static String CART_SHENHE = "-WEISHENHE";
+    public final static String template_APPLY = "-noTemplate";
+
 }
