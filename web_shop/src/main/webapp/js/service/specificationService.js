@@ -31,4 +31,8 @@ app.service('specificationService',function($http){
     this.findById=function (id) {
         return $http.get('../spec/findById.do?id='+id);
     }
+
+    this.selectOptionList=function(){
+        return $http.get("../spec/selectOptionList.do");
+    }
 });

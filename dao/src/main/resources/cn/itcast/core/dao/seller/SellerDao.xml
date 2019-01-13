@@ -515,4 +515,7 @@
       bank_name = #{bankName,jdbcType=VARCHAR}
     where seller_id = #{sellerId,jdbcType=VARCHAR}
   </update>
+  <select id="selectOptionList" resultType="java.util.Map">
+    select seller_id, name as text from tb_seller
+  </select>
 </mapper>

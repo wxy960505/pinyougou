@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -61,5 +62,10 @@ public class SellerServiceImpl implements SellerService{
         seller.setSellerId(sellerId);
         seller.setStatus(status);
         sellerDao.updateByPrimaryKeySelective(seller);
+    }
+
+    @Override
+    public List<Map> selectOptionList() {
+        return sellerDao.selectOptionList();
     }
 }

@@ -79,7 +79,7 @@
                     <input id="selall" type="checkbox" class="icheckbox_square-blue">
                 </th>
                 <th class="sorting_asc">订单ID</th>
-                <th class="sorting">秒杀商品名称</th>
+                <th class="sorting">商家名称</th>
                 <th class="sorting">支付金额</th>
                 <th class="sorting">购买用户姓名</th>
                 <th class="sorting">创建时间</th>
@@ -91,7 +91,7 @@
             <tr ng-repeat="entity in list">
                 <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)" ></td>
                 <td>{{entity.id}}</td>
-                <td>{{itemCatList[entity.sellerId]}}</td>
+                <td>{{entity.sellerId}}</td>
                 <td>{{entity.money}}</td>
                 <td>{{entity.userId}}</td>
                 <td>{{entity.createTime}}</td>

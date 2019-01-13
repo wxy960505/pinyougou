@@ -3,6 +3,8 @@ package cn.itcast.core.dao.seller;
 import cn.itcast.core.pojo.seller.Seller;
 import cn.itcast.core.pojo.seller.SellerQuery;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface SellerDao {
@@ -27,4 +29,6 @@ public interface SellerDao {
     int updateByPrimaryKeySelective(Seller record);
 
     int updateByPrimaryKey(Seller record);
+
+    public List<Map> selectOptionList();
 }
