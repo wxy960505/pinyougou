@@ -32,8 +32,10 @@ public class ordersController {
         try {
             if (selectIds != null) {
                 for (Long orderId : selectIds) {
+                    Order order=new Order();
+                    order.setOrderId(orderId);
                     //1. 更改数据库中商品的审核状态
-                    ordersService.updateStatus(orderId, status);
+                    ordersService.updateStatus(order, status);
                 }
             }
             return new Result(true, "状态修改成功!");

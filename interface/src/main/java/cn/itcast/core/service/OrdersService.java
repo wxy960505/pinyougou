@@ -7,5 +7,5 @@ public interface OrdersService {
 
     PageResult findPage(Order ordersEntity, Integer page, Integer rows);
 
-    void updateStatus(Long orderId, String status);
+    void updateStatus(Order order, String status);
 }

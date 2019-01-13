@@ -70,14 +70,12 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public void updateStatus(Long orderId, String status) {
+    public void updateStatus(Order order, String status) {
         //获取当前时间
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time= sdf.format( new Date());
         Date date = DateUtils.stringToDate(time);
         //根据订单id改变数据库中订单的状态
-        Order order=new Order();
-        order.setOrderId(orderId);
         order.setStatus(status);
         order.setConsignTime(date);
         orderDao.updateByPrimaryKeySelective(order);
