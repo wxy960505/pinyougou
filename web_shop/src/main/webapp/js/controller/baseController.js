@@ -18,14 +18,14 @@ app.controller("baseController",function($scope){
 	// 定义一个数组:
 	$scope.selectIds = [];
 	// 更新复选框：
-	$scope.updateSelection = function($event,id){
+	$scope.updateSelection = function($event,orderId){
 		// 复选框选中
 		if($event.target.checked){
 			// 向数组中添加元素
-			$scope.selectIds.push(id);
+			$scope.selectIds.push(orderId);
 		}else{
 			// 从数组中移除
-			var idx = $scope.selectIds.indexOf(id);
+			var idx = $scope.selectIds.indexOf(orderId);
 			$scope.selectIds.splice(idx,1);
 		}
 		

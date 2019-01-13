@@ -6,4 +6,6 @@ import cn.itcast.core.pojo.order.Order;
 public interface OrdersService {
 
     PageResult findPage(Order ordersEntity, Integer page, Integer rows);
+
+    void updateStatus(Long orderId, String status);
 }
