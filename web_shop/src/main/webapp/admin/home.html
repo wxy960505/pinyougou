@@ -6,103 +6,198 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>后台管理系统</title>
     <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"> 
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Morris charts -->
+    <link rel="stylesheet" href="../css/morris.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.min.css">
+
+    <!-- 引入angular的js -->
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    <!-- 引入分页相关的JS和CSS -->
+    <script type="text/javascript" src="../plugins/angularjs/pagination.js"></script>
+    <link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+
+    <script type="text/javascript" src="../js/base_pagination.js"></script>
+    <script type="text/javascript" src="../js/controller/baseController.js"></script>
+    <script type="text/javascript" src="../js/controller/goodsController.js"></script>
+    <script type="text/javascript" src="../js/service/goodsService.js"></script>
+    <!--加载ECharts-->
+    <script type="text/javascript" src="/js/entiry/echarts-all.js"></script>
+    <script type="text/javascript" src="../js/controller/line.js"></script>
+
+
+
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
 
-   <!-- 内容区域 -->
+<body class="hold-transition skin-blue sidebar-mini" ng-app="pinyougou" ng-controller="lineCtrl" ng-init="findAll()">
 
-
-            <!-- 内容头部 -->
-            <section class="content-header">
-                <h1>
-                    控制面板
-                    <small>首页</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> 首页</a></li>
-                </ol>
-            </section>
-            <!-- 内容头部 /-->
-
-            <!-- 正文区域 -->
-            <section class="content">
+<!-- 内容区域 -->
 
 
-                <!-- 统计数值 -->
-                <div class="row">
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-aqua">
-                            <div class="inner">
-                                <h3>150</h3>
+<!-- 内容头部 -->
 
-                                <p>新订单</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-bag"></i>
-                            </div>
-                            <a href="all-order-manage-list.html" class="small-box-footer">详细 <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-green">
-                            <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+<section class="content-header">
+    <h1>
+        控制面板
+        <small>首页</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> 首页</a></li>
+    </ol>
+</section>
+<!-- 内容头部 /-->
 
-                                <p>转化率</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
-                            </div>
-                            <a href="all-ad-statistics-list.html" class="small-box-footer">详细 <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <h3>44</h3>
+<!-- 正文区域 -->
+<section class="content">
 
-                                <p>新注册用户</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person-add"></i>
-                            </div>
-                            <a href="all-member-manage-list.html" class="small-box-footer">详细 <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <h3>65</h3>
 
-                                <p>日PV</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="all-ad-statistics-list.html" class="small-box-footer">详细 <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
+    <!-- 统计数值 -->
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>150</h3>
+
+                    <p>新订单</p>
                 </div>
-                <!-- /.row -->
-            </section>
-            <!-- 正文区域 /-->
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="order.html" class="small-box-footer">详细 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-        <!-- 内容区域 /-->
+                    <p>转化率</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="all-ad-statistics-list.html" class="small-box-footer">详细 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3>44</h3>
+
+                    <p>新注册用户</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a href="all-member-manage-list.html" class="small-box-footer">详细 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3>65</h3>
+
+                    <p>日PV</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                </div>
+                <a href="all-ad-statistics-list.html" class="small-box-footer">详细 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+    <!-- /.row -->
+
+</section>
+<!-- 正文区域 /-->
+
+<!-- Main content -->
+<!-- <section class="content">
+
+     <div class="row">
+         <div class="col-md-6">
+             &lt;!&ndash; AREA CHART &ndash;&gt;
+             <div class="box box-primary">
+                 <div class="box-header with-border">
+                     <h3 class="box-title">最近七天的销量</h3>
+
+                     <div class="box-tools pull-right">
+                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                         </button>
+                         <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                     </div>
+                 </div>
+                 <div class="box-body chart-responsive">
+                     <div class="chart" id="revenue-chart" style="height: 300px;"></div>
+                 </div>
+                 &lt;!&ndash; /.box-body &ndash;&gt;
+             </div>
+             &lt;!&ndash; /.box &ndash;&gt;
+         </div>
+         &lt;!&ndash; /.col (LEFT) &ndash;&gt;
+     </div>
+     &lt;!&ndash; /.row &ndash;&gt;
+
+ </section>-->
+<!-- /.content -->
+<section>
+    <line id="main" legend="legend" item="item" data="data"></line>
+</section>
+
+
+
+<!-- jQuery 3 -->
+<script type="text/javascript" src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script type="text/javascript" src="/plugins/bootstrap/js/bootstrap.js"></script>
+<!-- Morris.js charts -->
+<script type="text/javascript" src="/js/entiry/raphael.min.js"></script>
+<script type="text/javascript" src="/js/entiry/morris.min.js"></script>
+
+<!-- <script>
+     $(function () {
+         "use strict";
+
+         // AREA CHART
+         var area = new Morris.Area({
+             element: '4',
+             resize: true,
+             data: [
+                 {y: '2018-01-01', item1: 2666, item2: 2666},
+                 {y: '2018-01-02', item1: 2778, item2: 2294},
+                 {y: '2018-01-03', item1: 3767, item2: 3597},
+                 {y: '2018-01-04', item1: 6810, item2: 1914},
+                 {y: '2018-01-05', item1: 5670, item2: 4293},
+                 {y: '2018-01-06', item1: 4820, item2: 3795},
+                 {y: '2018-01-07', item1: 15073, item2: 5967}
+             ],
+             xkey: 'y',
+             ykeys: ['item1', 'item2'],
+             labels: ['Item 1', 'Item 2'],
+             lineColors: ['#a0d0e0', '#3c8dbc'],
+             hideHover: 'auto'
+         });
+
+
+     });
+ </script>
+-->
 </body>
 
 </html>

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/seller")
 public class SellerController {
@@ -24,5 +27,17 @@ public class SellerController {
             e.printStackTrace();
             return new Result(false, "注册失败!");
         }
+    }
+
+    @RequestMapping("/findOne")
+    public Seller findOne(String id) {
+        Seller one = sellerService.findOne(id);
+        return one;
+    }
+
+    @RequestMapping("/selectOptionList")
+    public List<Map> selectOptionList(){
+        List<Map> list = sellerService.selectOptionList();
+        return list;
     }
 }
