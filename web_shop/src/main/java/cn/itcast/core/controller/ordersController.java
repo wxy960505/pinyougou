@@ -28,12 +28,12 @@ public class ordersController {
     }
     /*商品发货*/
     @RequestMapping("/updateStatus")
-    public  Result updateStatus(Long[] selectIds, String status) {
+    public  Result updateStatus(String[] selectIds, String status) {
         try {
             if (selectIds != null) {
-                for (Long orderId : selectIds) {
+                for (String orderId : selectIds) {
                     Order order=new Order();
-                    order.setOrderId(orderId);
+                    order.setOrderId(Long.valueOf(orderId));
                     //1. 更改数据库中商品的审核状态
                     ordersService.updateStatus(order, status);
                 }

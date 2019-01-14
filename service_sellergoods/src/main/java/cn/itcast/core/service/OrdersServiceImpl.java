@@ -55,13 +55,16 @@ public class OrdersServiceImpl implements OrdersService {
                 criteria.andStatusEqualTo(order.getStatus());
             }
         }
+        criteria.andSellerIdEqualTo(order.getSellerId());
        Page<Order> ordersList = (Page<Order>) orderDao.selectByExample(query);
         for (Order order1 : ordersList) {
             OrderItemQuery orderItemQuery = new OrderItemQuery();
             OrderItemQuery.Criteria criteria1 = orderItemQuery.createCriteria();
             criteria1.andOrderIdEqualTo(order1.getOrderId());
+            criteria1.andSellerIdEqualTo(order.getSellerId());
             List<OrderItem> orderItemList = orderItemDao.selectByExample(orderItemQuery);
             order1.setOrderItemList(orderItemList);
+            order1.setOrderIdStr(String.valueOf(order1.getOrderId()));
         }
 
 
