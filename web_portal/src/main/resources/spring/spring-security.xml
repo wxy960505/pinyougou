@@ -3,6 +3,7 @@
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+             xmlns:security="http://www.springframework.org/schema/c"
              xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 	
@@ -10,12 +11,11 @@
 	<http pattern="/img/**" security="none"></http>
 	<http pattern="/js/**" security="none"></http>
 	<http pattern="/plugins/**" security="none"></http>
-	
+
 	<http pattern="/index.html" security="none"></http>
 	<http pattern="/search.html" security="none"></http>
 	<http pattern="/cart.html" security="none"></http>
 <!-- 	<http pattern="/cart.html" security="none"></http> -->
-    	
 	<!--   entry-point-ref  入口点引用 -->
 	<http use-expressions="false" entry-point-ref="casProcessingFilterEntryPoint"> 
 		<!-- 匿名角色 IS_AUTHENTICATED_ANONYMOUSLY -->
