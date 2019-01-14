@@ -35,7 +35,7 @@ public class TimeServiceImpl implements TimeService {
         for (int i = 1; i < 7 ; i++) {
             int i1 = Integer.parseInt(s);
             s = String.valueOf(i1 - 1);
-            int count = orderDao.findCountDayTime("%"+"18_" + split[1] + "_" + s+"%");
+            int count = orderDao.findCountDayTime("%"+"19_" + split[1] + "_" + s+"%");
             dayTimes.add(new DayTime(split[0]+"-"+split[1]+"-"+s, count));
         }
 

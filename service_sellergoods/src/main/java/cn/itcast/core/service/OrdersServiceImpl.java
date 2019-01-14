@@ -13,6 +13,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -50,18 +51,38 @@ public class OrdersServiceImpl implements OrdersService {
                     criteria.andUpdateTimeBetween(DateUtils.getMonthStartAndEndDate(new Date())[0],DateUtils.getMonthStartAndEndDate(new Date())[1]);
                 }
             }
+            if (order.getStatus()!=null&&!"".equals(order.getStatus())){
+                criteria.andStatusEqualTo(order.getStatus());
+            }
         }
+        criteria.andSellerIdEqualTo(order.getSellerId());
        Page<Order> ordersList = (Page<Order>) orderDao.selectByExample(query);
         for (Order order1 : ordersList) {
             OrderItemQuery orderItemQuery = new OrderItemQuery();
             OrderItemQuery.Criteria criteria1 = orderItemQuery.createCriteria();
             criteria1.andOrderIdEqualTo(order1.getOrderId());
+            criteria1.andSellerIdEqualTo(order.getSellerId());
             List<OrderItem> orderItemList = orderItemDao.selectByExample(orderItemQuery);
             order1.setOrderItemList(orderItemList);
+            order1.setOrderIdStr(String.valueOf(order1.getOrderId()));
         }
 
 
 
         return new PageResult(ordersList.getTotal(),ordersList.getResult());
     }
+
+    @Override
+    public void updateStatus(Order order, String status) {
+        //获取当前时间
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time= sdf.format( new Date());
+        Date date = DateUtils.stringToDate(time);
+        //根据订单id改变数据库中订单的状态
+        order.setStatus(status);
+        order.setConsignTime(date);
+        orderDao.updateByPrimaryKeySelective(order);
+    }
+
+
 }

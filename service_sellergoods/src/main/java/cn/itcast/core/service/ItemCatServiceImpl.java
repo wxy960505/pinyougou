@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -47,5 +50,41 @@ public class ItemCatServiceImpl implements ItemCatService {
     @Override
     public List<ItemCat> findAll() {
         return catDao.selectByExample(null);
+    }
+
+    ////$scope.item_cat_list =
+    // [{item1:{cat},sub2:[{item2:{cat},sub3:[{cat}...]}...]}...];
+    @Override
+    public List<Map> findPortolCategory() {
+        List<Map> results = new ArrayList<>();
+        //一级分类
+        ItemCatQuery itemCatQuery = new ItemCatQuery();
+        itemCatQuery.createCriteria().andParentIdEqualTo(0L);
+        List<ItemCat> catList1 = catDao.selectByExample(itemCatQuery);
+
+        for (ItemCat itemCat1 : catList1) {
+            Map map1 = new HashMap();
+            //二级分类
+            List<Map> catList2_results = new ArrayList<>();
+            itemCatQuery.clear();
+            itemCatQuery.createCriteria().andParentIdEqualTo(itemCat1.getId());
+            List<ItemCat> catList2 = catDao.selectByExample(itemCatQuery);
+            for (ItemCat itemCat2 : catList2) {
+                Map map2 = new HashMap();
+                itemCatQuery.clear();
+                itemCatQuery.createCriteria().andParentIdEqualTo(itemCat2.getId());
+                List<ItemCat> catList3_results = catDao.selectByExample(itemCatQuery);
+                map2.put("item2",itemCat2);
+                map2.put("sub3",catList3_results);
+                catList2_results.add(map2);
+            }
+            map1.put("item1",itemCat1);
+            map1.put("sub2",catList2_results);
+            results.add(map1);
+        }
+
+
+
+        return results;
     }
 }
