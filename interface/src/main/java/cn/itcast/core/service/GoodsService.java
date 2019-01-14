@@ -18,5 +18,7 @@ public interface GoodsService {
 
     public void  updateStatus(Long id, String  status);
 
+    public void delete(Long id, String path);
+
     public void delete(Long id);
 }

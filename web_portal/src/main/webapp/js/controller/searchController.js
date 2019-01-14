@@ -128,5 +128,18 @@ app.controller('searchController',function($scope,$location,searchService){
 		alert(goodsId);
 		window.open("http://localhost:8086/"+goodsId+".html");
 	}
+
+    $scope.addFollow = function(id){
+        alert(id);
+        searchService.addFollow(id).success(
+            function(response){
+                if(response.success){//如果成功
+                    alert(response.message);
+                }else{
+                    alert(response.message);
+                }
+            }
+        );
+    }
 	
 });
