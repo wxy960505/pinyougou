@@ -6,7 +6,10 @@ import cn.itcast.core.pojo.entity.Result;
 import cn.itcast.core.pojo.good.Goods;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 public interface GoodsService {
+    public List<Goods> findAll();
 
     public void add(GoodsEntity goodsEntity);
 

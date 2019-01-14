@@ -10,9 +10,131 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 				$scope.list=response;
 			}			
 		);
-	}    
-	
-	//分页
+	}
+
+    //商品excel导出
+    $scope.expot=function(){
+        alert("商品Excel导出");
+        sellerService.expot().success(
+            function(response){
+                $scope.entity= response;
+            }
+        );
+    }
+    //订单excel导出
+    $scope.oExpot=function(){
+        alert("订单Excel导出");
+        sellerService.oExpot().success(
+            function(response){
+                $scope.entity= response;
+            }
+        );
+    }
+
+    //品牌excel导入
+    $scope.brandOut=function(){
+        //alert("品牌Excel导入");
+        sellerService.brandOut().success(
+            function(response){
+                $scope.entity= response;
+                alert(response.message);
+            }
+        );
+    }
+    //规格excel导入
+    $scope.specOut=function(){
+        //alert("规格Excel导入");
+        sellerService.specOut().success(
+            function(response){
+                $scope.entity= response;
+                alert(response.message);
+            }
+        );
+    }
+    //模板excel导入
+    $scope.templateOut=function(){
+        //alert("模板Excel导入");
+        sellerService.templateOut().success(
+            function(response){
+                $scope.entity= response;
+                alert(response.message);
+            }
+        );
+    }
+    //分类excel导入
+    $scope.categoryOut=function(){
+        //alert("分类Excel导入");
+        sellerService.categoryOut().success(
+            function(response){
+                $scope.entity= response;
+                alert(response.message);
+            }
+        );
+    }
+
+    //商品excel导出
+    $scope.expot=function(){
+        alert("商品Excel导出");
+        sellerService.expot().success(
+            function(response){
+                $scope.entity= response;
+            }
+        );
+    }
+    //订单excel导出
+    $scope.oExpot=function(){
+        alert("订单Excel导出");
+        sellerService.oExpot().success(
+            function(response){
+                $scope.entity= response;
+            }
+        );
+    }
+
+    //品牌excel导入
+    $scope.brandOut=function(){
+        //alert("品牌Excel导入");
+        sellerService.brandOut().success(
+            function(response){
+                $scope.entity= response;
+                alert(response.message);
+            }
+        );
+    }
+    //规格excel导入
+    $scope.specOut=function(){
+        //alert("规格Excel导入");
+        sellerService.specOut().success(
+            function(response){
+                $scope.entity= response;
+                alert(response.message);
+            }
+        );
+    }
+    //模板excel导入
+    $scope.templateOut=function(){
+        //alert("模板Excel导入");
+        sellerService.templateOut().success(
+            function(response){
+                $scope.entity= response;
+                alert(response.message);
+            }
+        );
+    }
+    //分类excel导入
+    $scope.categoryOut=function(){
+        //alert("分类Excel导入");
+        sellerService.categoryOut().success(
+            function(response){
+                $scope.entity= response;
+                alert(response.message);
+            }
+        );
+    }
+
+
+
+    //分页
 	$scope.findPage=function(page,rows){			
 		sellerService.findPage(page,rows).success(
 			function(response){

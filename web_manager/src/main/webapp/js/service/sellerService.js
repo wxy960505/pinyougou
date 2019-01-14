@@ -5,6 +5,54 @@ app.service('sellerService',function($http){
 	this.findAll=function(){
 		return $http.get('../seller/findAll.do');		
 	}
+    //商品导出
+    this.expot=function(){
+        return $http.get('../goods/goodsExport.do');
+    }
+    //订单导出
+    this.oExpot=function(){
+        return $http.get('../order/orderExport.do');
+    }
+    //商品导出
+    this.expot=function(){
+        return $http.get('../goods/goodsExport.do');
+    }
+    //订单导出
+    this.oExpot=function(){
+        return $http.get('../order/orderExport.do');
+    }
+    //品牌导入
+    this.brandOut=function(){
+        return $http.get('../derived/brandGet.do');
+    }
+    //规格导入
+    this.specOut=function(){
+        return $http.get('../derived/specGet.do');
+    }
+    //模板导入
+    this.templateOut=function(){
+        return $http.get('../derived/templateGet.do');
+    }
+    //分类导入
+    this.categoryOut=function(){
+        return $http.get('../derived/categoryGet.do');
+    }
+    //品牌导入
+    this.brandOut=function(){
+        return $http.get('../derived/brandGet.do');
+    }
+    //规格导入
+    this.specOut=function(){
+        return $http.get('../derived/specGet.do');
+    }
+    //模板导入
+    this.templateOut=function(){
+        return $http.get('../derived/templateGet.do');
+    }
+    //分类导入
+    this.categoryOut=function(){
+        return $http.get('../derived/categoryGet.do');
+    }
 	//分页 
 	this.findPage=function(page,rows){
 		return $http.get('../seller/findPage.do?page='+page+'&rows='+rows);

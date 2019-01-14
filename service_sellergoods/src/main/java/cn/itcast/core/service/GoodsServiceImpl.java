@@ -71,6 +71,12 @@ public class GoodsServiceImpl implements GoodsService {
     private ActiveMQQueue queueSolrDeleteDestination;
 
     @Override
+    public List<Goods> findAll() {
+        List<Goods> goods = goodsDao.selectByExample(null);
+        return goods;
+    }
+
+    @Override
     public void add(GoodsEntity goodsEntity) {
         //1. 保存商品表数据
         //初始化新增的商品状态为0, 未审核状态
