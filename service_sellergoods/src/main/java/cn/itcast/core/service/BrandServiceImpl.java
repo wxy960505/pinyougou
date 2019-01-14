@@ -4,6 +4,7 @@ import cn.itcast.core.dao.good.BrandDao;
 import cn.itcast.core.pojo.entity.PageResult;
 import cn.itcast.core.pojo.good.Brand;
 import cn.itcast.core.pojo.good.BrandQuery;
+import cn.itcast.core.util.Constants;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -32,6 +33,7 @@ public class BrandServiceImpl implements BrandService {
         BrandQuery brandQuery = new BrandQuery();
         //创建where查询条件
         BrandQuery.Criteria criteria = brandQuery.createCriteria();
+        criteria.andNameNotLike("%" + Constants.BRAND_APPLY + "%");
         if (brand != null) {
             if (brand.getName() != null && !"".equals(brand.getName())){
                 criteria.andNameLike("%"+brand.getName()+"%");

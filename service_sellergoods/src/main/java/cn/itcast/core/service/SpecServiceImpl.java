@@ -34,6 +34,7 @@ public class SpecServiceImpl implements SpecService {
         PageHelper.startPage(page, rows);
         SpecificationQuery query = new SpecificationQuery();
         SpecificationQuery.Criteria criteria = query.createCriteria();
+        criteria.andSpecNameNotLike("%" + Constants.BRAND_APPLY + "%");
         if (spec != null) {
             if (spec.getSpecName() != null && !"".equals(spec.getSpecName())) {
                 criteria.andSpecNameLike("%"+spec.getSpecName()+"%");
