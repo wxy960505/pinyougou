@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>商家管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入angular的js -->
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    <!-- 引入分页相关的JS和CSS -->
+    <script type="text/javascript" src="../plugins/angularjs/pagination.js"></script>
+    <link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+
+    <script type="text/javascript" src="../js/base_pagination.js"></script>
+    <script type="text/javascript" src="../js/controller/baseController.js"></script>
+
+    <script type="text/javascript" src="../js/controller/ruserController.js"></script>
+    <script type="text/javascript" src="../js/service/ruserService.js"></script>
+</head>
+
+<!--初始话方法,查询全部用户-->
+<body class="hold-transition skin-red sidebar-mini"  ng-app="pinyougou" ng-controller="ruserController" ng-init="findAll()">
+<!-- .box-body -->
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">用户管理</h3>
+    </div>
+    <div class="box-body">
+        <!-- 数据表格 -->
+        <div class="table-box">
+            <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+                <thead>
+                <tr>
+                    <th class="sorting">用户数量</th>
+                    <th class="sorting">活跃用户</th>
+                    <th class="sorting">非活跃用户</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr >
+                    <td>{{list.size}}</td>
+                    <td>{{list.active}}</td>
+                    <td>{{list.unactive}}</td>
+                </tr>
+
+                </tbody>
+            </table>
+            <!--数据列表/-->
+        </div>
+    </div>
+    </div>
+</body>
+</html>

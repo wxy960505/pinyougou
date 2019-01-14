@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class User implements Serializable {
+
+    /**
+     * 用户id
+     */
     private Long id;
 
     /**
