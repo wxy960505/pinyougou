@@ -13,6 +13,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +51,9 @@ public class OrdersServiceImpl implements OrdersService {
                     criteria.andUpdateTimeBetween(DateUtils.getMonthStartAndEndDate(new Date())[0],DateUtils.getMonthStartAndEndDate(new Date())[1]);
                 }
             }
+            if (order.getStatus()!=null&&!"".equals(order.getStatus())){
+                criteria.andStatusEqualTo(order.getStatus());
+            }
         }
        Page<Order> ordersList = (Page<Order>) orderDao.selectByExample(query);
         for (Order order1 : ordersList) {
@@ -64,4 +68,18 @@ public class OrdersServiceImpl implements OrdersService {
 
         return new PageResult(ordersList.getTotal(),ordersList.getResult());
     }
+
+    @Override
+    public void updateStatus(Order order, String status) {
+        //获取当前时间
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time= sdf.format( new Date());
+        Date date = DateUtils.stringToDate(time);
+        //根据订单id改变数据库中订单的状态
+        order.setStatus(status);
+        order.setConsignTime(date);
+        orderDao.updateByPrimaryKeySelective(order);
+    }
+
+
 }

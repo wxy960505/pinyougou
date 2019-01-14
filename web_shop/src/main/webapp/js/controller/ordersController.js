@@ -2,6 +2,19 @@ app.controller('ordersController' ,function($scope,$controller,ordersService) {
 
     $controller('baseController', {$scope: $scope});//继承
 
+
+    // 发货的方法:
+    $scope.updateStatus = function(status){
+        ordersService.updateStatus($scope.selectIds,status).success(function(response){
+            if(response.success){
+                $scope.reloadList();//刷新列表
+                $scope.selectIds = [];
+            }else{
+                alert(response.message);
+            }
+        });
+    }
+
     $scope.searchEntity={};//定义搜索对象
 
     // 显示状态

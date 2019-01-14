@@ -1,6 +1,7 @@
 package cn.itcast.core.controller;
 
 import cn.itcast.core.pojo.entity.PageResult;
+import cn.itcast.core.pojo.entity.Result;
 import cn.itcast.core.pojo.order.Order;
 import cn.itcast.core.service.OrdersService;
 import com.alibaba.dubbo.config.annotation.Reference;
@@ -25,4 +26,23 @@ public class ordersController {
         PageResult result = ordersService.findPage(order, page, rows);
         return result;
     }
+    /*商品发货*/
+    @RequestMapping("/updateStatus")
+    public  Result updateStatus(Long[] selectIds, String status) {
+        try {
+            if (selectIds != null) {
+                for (Long orderId : selectIds) {
+                    Order order=new Order();
+                    order.setOrderId(orderId);
+                    //1. 更改数据库中商品的审核状态
+                    ordersService.updateStatus(order, status);
+                }
+            }
+            return new Result(true, "状态修改成功!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false, "状态修改失败!");
+        }
+    }
+
 }
