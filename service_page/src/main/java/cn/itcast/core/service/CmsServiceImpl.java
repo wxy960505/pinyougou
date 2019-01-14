@@ -116,4 +116,10 @@ public class CmsServiceImpl implements CmsService, ServletContextAware {
         resultMap.put("itemList", itemList);
         return resultMap;
     }
+
+    @Override
+    public String getPath(String path) {
+        String realPath = servletContext.getRealPath(path);
+        return realPath;
+    }
 }

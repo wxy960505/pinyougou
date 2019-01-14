@@ -31,6 +31,7 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.Session;
 import javax.jms.TextMessage;
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
@@ -190,6 +191,37 @@ public class GoodsServiceImpl implements GoodsService {
                 }
             });
         }
+    }
+
+    @Override
+    public void delete(final Long id, String path) {
+        /**
+         * 1. 根据商品id到数据库中逻辑删除商品数据
+         */
+        //根据商品id对商品表做逻辑删除
+        Goods goods = new Goods();
+        goods.setId(id);
+        goods.setIsDelete("1");
+        goodsDao.updateByPrimaryKeySelective(goods) ;
+
+        File file = new File(path);
+        boolean flag = file.delete();
+        if (flag){
+            System.out.println("删除成功!");
+        }else{
+            System.out.println("删除失败!");
+        }
+
+        /**
+         * 2. 将下架的商品id作为消息发送给消息服务器
+         */
+        jmsTemplate.send(queueSolrDeleteDestination, new MessageCreator() {
+            @Override
+            public Message createMessage(Session session) throws JMSException {
+                TextMessage textMessage = session.createTextMessage(String.valueOf(id));
+                return textMessage;
+            }
+        });
     }
 
     @Override

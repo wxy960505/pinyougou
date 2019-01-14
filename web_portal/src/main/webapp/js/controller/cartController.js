@@ -9,6 +9,14 @@ app.controller('cartController',function($scope,cartService){
 			}
 		);
 	}
+	//查询购物车列表
+	$scope.findOrderList = function(){
+		cartService.findOrderList().success(
+			function(response){
+				$scope.orderList=response;
+			}
+		);
+	}
 	
 	//数量加减
 	$scope.addGoodsToCartList=function(itemId,num){

@@ -13,4 +13,6 @@ public interface CmsService {
     public void createStaticPage(Map<String, Object> rootMap, Long goodsId) throws Exception;
 
     public Map<String, Object> findGoodsData(Long goodsId);
+
+    String getPath(String s);
 }
