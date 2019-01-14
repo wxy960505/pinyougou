@@ -4,6 +4,10 @@ app.service('cartService',function($http){
 	this.findCartList=function(){
 		return $http.get('cart/findCartList.do');
 	}
+	//订单列表
+	this.findOrderList=function(){
+		return $http.get('order/findOrderList.do');
+	}
 	
 	//添加商品到购物车
 	this.addGoodsToCartList=function(itemId,num){

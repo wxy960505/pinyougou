@@ -4,6 +4,7 @@ import cn.itcast.core.pojo.entity.GoodsEntity;
 import cn.itcast.core.pojo.entity.PageResult;
 import cn.itcast.core.pojo.entity.Result;
 import cn.itcast.core.pojo.good.Goods;
+import cn.itcast.core.service.CmsService;
 import cn.itcast.core.service.GoodsService;
 import cn.itcast.core.service.SolrManagerService;
 import com.alibaba.dubbo.config.annotation.Reference;
@@ -21,6 +22,9 @@ public class GoodsController {
 
     @Reference
     private GoodsService goodsService;
+
+    @Reference
+    private CmsService cmsService;
 
 //    @Reference
 //    private SolrManagerService solrManagerService;
@@ -87,7 +91,8 @@ public class GoodsController {
             if (ids != null) {
                 for (Long id : ids) {
                     //1. 到数据库中根据商品id逻辑删除商品数据
-                    goodsService.delete(id);
+                    String path = cmsService.getPath(id + ".html");
+                    goodsService.delete(id, path);
 
                     //2. 根据商品id, 到solr索引库中删除对应的数据
                     //solrManagerService.deleteSolrItem(id);
